@@ -131,7 +131,7 @@ echo "parameters:  Project=$mdx_project Config=$mdx_config Folder=$git_folder"
 # METADEX_URL is set (or add -s=<metadex url with port)
 # METADEX_USER is set (or add -u-<username>)
 # METADEX_PASSWORD is set (or add -p=<encrypted password> $INFA_HOME/services/CatalogService/AdvancedScannersApplication/app/encrypt.sh"
-# .bash_profile_SECURITY_DOMAIN is set (or add -d=<security domain>)
+# METADEX_SECURITY_DOMAIN is set (or add -d=<security domain>)
 SCANNERS_HOME=$INFA_HOME/services/CatalogService/AdvancedScannersApplication/app
 
 echo "variables in use"
