@@ -6,7 +6,7 @@ usage() {
 }
 
 is_metadex_running() {
-    # check if metadex processes are running 
+    # check if processes are running 
     echo "step 2: checking metadex is running"
 
     #echo "    checking pids for metadex ps -eo pid,command | grep $SCANNERS_HOME | grep -v grep | awk '{print $1}'"
@@ -128,18 +128,18 @@ echo "parameters:  Project=$mdx_project Config=$mdx_config Folder=$git_folder"
 
 # assumptions
 # INFA_HOME is set
-# METADEX_URL is set (or add -s=<metadex url with port)
-# METADEX_USER is set (or add -u-<username>)
+# SCANNERS_URL is set (or add -s=<metadex url with port)
+# SCANNERS_USER is set (or add -u-<username>)
 # METADEX_PASSWORD is set (or add -p=<encrypted password> $INFA_HOME/services/CatalogService/AdvancedScannersApplication/app/encrypt.sh"
-# METADEX_SECURITY_DOMAIN is set (or add -d=<security domain>)
+# SCANNERS_SECURITY_DOMAIN is set (or add -d=<security domain>)
 SCANNERS_HOME=$INFA_HOME/services/CatalogService/AdvancedScannersApplication/app
 
 echo "variables in use"
 echo "  INFA_HOME=$INFA_HOME"
 echo "  SCANNERS_HOME=$SCANNERS_HOME"
-echo "  METADEX_URL=$METADEX_URL"
-echo "  METADEX_USER=$METADEX_USER"
-echo "  METADEX_SECURITY_DOMAIN=$METADEX_SECURITY_DOMAIN"
+echo "  SCANNERS_URL=$SCANNERS_URL"
+echo "  SCANNERS_USER=$SCANNERS_USER"
+echo "  SCANNERS_SECURITY_DOMAIN=$SCANNERS_SECURITY_DOMAIN"
 
 
 if (is_git_updated && is_metadex_running && check_mdx_config && ok_to_scan && update_git_repo && start_mdx_scan)

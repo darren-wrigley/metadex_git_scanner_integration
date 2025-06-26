@@ -24,6 +24,13 @@ each process must be successful (produce the expected result) or the script will
 - local git clone should be clean (not used to update & commit) & the branch set is the branch to use for detecting updates (e.g. main)
 - metadex project and configuration has been created to scan files in local git repository
 - script can be scheduled to run at any time (not part of the script itself)
+- Environment variables should be set:<br/>see https://docs.informatica.com/data-catalog/enterprise-data-catalog/10-5-8/metadex-scanner-administrator-guide/appendix-d--scanners-cli-utility/configurations-parameters-set.html
+  - INFA_HOME
+  - SCANNERS_URL - url for metadex ui, with port
+  - SCANNERS_USER
+  - SCANNERS_PASSWORD (use $INFA_HOME/services/CatalogService/AdvancedScannersApplication/app/encrypt.sh to create encrypted password)
+  - SCANNERS_SECURITY_DOMAIN (Native, Metadex, or LDAP Security Domain)
+
    
    
 # git commands used
@@ -63,9 +70,9 @@ parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/
 variables in use
   INFA_HOME=/data/informatica/CURRENT
   SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
-  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
-  METADEX_USER=admin
-  METADEX_SECURITY_DOMAIN=Native
+  SCANNERS_URL=https://asvedcpmtest01.informatica.com:48090
+  SCANNERS_USER=admin
+  SCANNERS_SECURITY_DOMAIN=Native
 step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
     git repo folder exists. /data/git/mdx_sql_script_automation
     success: git status shows updates
@@ -91,9 +98,9 @@ parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/
 variables in use
   INFA_HOME=/data/informatica/CURRENT
   SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
-  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
-  METADEX_USER=admin
-  METADEX_SECURITY_DOMAIN=Native
+  SCANNERS_URL=https://asvedcpmtest01.informatica.com:48090
+  SCANNERS_USER=admin
+  SCANNERS_SECURITY_DOMAIN=Native
 step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
     git repo folder exists. /data/git/mdx_sql_script_automation
     no changes to git repository upstream, exiting
@@ -107,9 +114,9 @@ parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/
 variables in use
   INFA_HOME=/data/informatica/CURRENT
   SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
-  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
-  METADEX_USER=admin
-  METADEX_SECURITY_DOMAIN=Native
+  SCANNERS_URL=https://asvedcpmtest01.informatica.com:48090
+  SCANNERS_USER=admin
+  SCANNERS_SECURITY_DOMAIN=Native
 step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
     git repo folder exists. /data/git/mdx_sql_script_automation
     success: git status shows updates
@@ -125,9 +132,9 @@ parameters:  Project=SQL_Script_automation Config=bad_config Folder=/data/git/md
 variables in use
   INFA_HOME=/data/informatica/CURRENT
   SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
-  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
-  METADEX_USER=admin
-  METADEX_SECURITY_DOMAIN=Native
+  SCANNERS_URL=https://asvedcpmtest01.informatica.com:48090
+  SCANNERS_USER=admin
+  SCANNERS_SECURITY_DOMAIN=Native
 step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
     git repo folder exists. /data/git/mdx_sql_script_automation
     success: git status shows updates
@@ -145,9 +152,9 @@ parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/
 variables in use
   INFA_HOME=/data/informatica/CURRENT
   SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
-  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
-  METADEX_USER=admin
-  METADEX_SECURITY_DOMAIN=Native
+  SCANNERS_URL=https://asvedcpmtest01.informatica.com:48090
+  SCANNERS_USER=admin
+  SCANNERS_SECURITY_DOMAIN=Native
 step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
     git repo folder exists. /data/git/mdx_sql_script_automation
     success: git status shows updates
