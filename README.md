@@ -54,3 +54,108 @@ each process must be successful (produce the expected result) or the script will
   - assumption for now, yes this is enough (any updates like direct commit, or pull request should trigger the process)
  
   
+# Examples
+
+## Example 1: changed files, metadex scan started
+```
+./mdx_git_automation.sh SQL_Script_automation script_scan_sqlserver /data/git/mdx_sql_script_automation
+parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/data/git/mdx_sql_script_automation
+variables in use
+  INFA_HOME=/data/informatica/CURRENT
+  SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
+  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
+  METADEX_USER=admin
+  METADEX_SECURITY_DOMAIN=Native
+step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
+    git repo folder exists. /data/git/mdx_sql_script_automation
+    success: git status shows updates
+step 2: checking metadex is running
+    success: mdx is running
+step 3: checking mdx config - project=SQL_Script_automation config=script_scan_sqlserver
+    success: config script_scan_sqlserver is valid
+step 4: checking for running/queued scan project=SQL_Script_automation config=script_scan_sqlserver
+    success: no scan is running for SQL_Script_automation/script_scan_sqlserver
+step 5: updating git repos in /data/git/mdx_sql_script_automation
+    executing git pull /data/git/metadex_git_scanner_integration
+    success: git repository updated
+step 6: starting metadex scan project=SQL_Script_automation config=script_scan_sqlserver
+    success: scan submitted running for SQL_Script_automation/script_scan_sqlserver
+    Job scheduled: {name: "["SQL_Script_automation","script_scan_sqlserver"]", id : 34403}
+success: files have been updated, mdx scan started
+```
+
+## Example 2:  no changes in git repository
+```
+./mdx_git_automation.sh SQL_Script_automation script_scan_sqlserver /data/git/mdx_sql_script_automation
+parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/data/git/mdx_sql_script_automation
+variables in use
+  INFA_HOME=/data/informatica/CURRENT
+  SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
+  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
+  METADEX_USER=admin
+  METADEX_SECURITY_DOMAIN=Native
+step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
+    git repo folder exists. /data/git/mdx_sql_script_automation
+    no changes to git repository upstream, exiting
+no changes to files in git repo, or error running scan
+```
+
+## Example 3: changed files, metadex not running
+```
+./mdx_git_automation.sh SQL_Script_automation script_scan_sqlserver /data/git/mdx_sql_script_automation
+parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/data/git/mdx_sql_script_automation
+variables in use
+  INFA_HOME=/data/informatica/CURRENT
+  SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
+  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
+  METADEX_USER=admin
+  METADEX_SECURITY_DOMAIN=Native
+step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
+    git repo folder exists. /data/git/mdx_sql_script_automation
+    success: git status shows updates
+step 2: checking metadex is running
+     failed: mdx is not running
+no changes to files in git repo, or error running scan
+```
+
+## Example 4: changed files, invalid project or configuration
+```
+./mdx_git_automation.sh SQL_Script_automation bad_config /data/git/mdx_sql_script_automation
+parameters:  Project=SQL_Script_automation Config=bad_config Folder=/data/git/mdx_sql_script_automation
+variables in use
+  INFA_HOME=/data/informatica/CURRENT
+  SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
+  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
+  METADEX_USER=admin
+  METADEX_SECURITY_DOMAIN=Native
+step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
+    git repo folder exists. /data/git/mdx_sql_script_automation
+    success: git status shows updates
+step 2: checking metadex is running
+    success: mdx is running
+step 3: checking mdx config - project=SQL_Script_automation config=bad_config
+    failed: config bad_config is not found for projecgt SQL_Script_automation
+no changes to files in git repo, or error running scan
+```
+
+## Example 5: changed files, metadex scan already queued/running
+```
+./mdx_git_automation.sh SQL_Script_automation script_scan_sqlserver /data/git/mdx_sql_script_automation
+parameters:  Project=SQL_Script_automation Config=script_scan_sqlserver Folder=/data/git/mdx_sql_script_automation
+variables in use
+  INFA_HOME=/data/informatica/CURRENT
+  SCANNERS_HOME=/data/informatica/CURRENT/services/CatalogService/AdvancedScannersApplication/app
+  METADEX_URL=https://asvedcpmtest01.informatica.com:48090
+  METADEX_USER=admin
+  METADEX_SECURITY_DOMAIN=Native
+step 1: checking git fetch/status in /data/git/mdx_sql_script_automation
+    git repo folder exists. /data/git/mdx_sql_script_automation
+    success: git status shows updates
+step 2: checking metadex is running
+    success: mdx is running
+step 3: checking mdx config - project=SQL_Script_automation config=script_scan_sqlserver
+    success: config script_scan_sqlserver is valid
+step 4: checking for running/queued scan project=SQL_Script_automation config=script_scan_sqlserver
+    failed: metaadex job is running - try later
+no changes to files in git repo, or error running scan
+```
