@@ -128,18 +128,18 @@ echo "parameters:  Project=$mdx_project Config=$mdx_config Folder=$git_folder"
 
 # assumptions
 # INFA_HOME is set
-# SCANNERS_URL is set (or add -s=<metadex url with port)
-# SCANNERS_USER is set (or add -u-<username>)
+# METADEX_URL is set (or add -s=<metadex url with port)
+# METADEX_USER is set (or add -u-<username>)
 # METADEX_PASSWORD is set (or add -p=<encrypted password> $INFA_HOME/services/CatalogService/AdvancedScannersApplication/app/encrypt.sh"
-# SCANNERS_SECURITY_DOMAIN is set (or add -d=<security domain>)
+# .bash_profile_SECURITY_DOMAIN is set (or add -d=<security domain>)
 SCANNERS_HOME=$INFA_HOME/services/CatalogService/AdvancedScannersApplication/app
 
 echo "variables in use"
 echo "  INFA_HOME=$INFA_HOME"
 echo "  SCANNERS_HOME=$SCANNERS_HOME"
-echo "  SCANNERS_URL=$SCANNERS_URL"
-echo "  SCANNERS_USER=$SCANNERS_USER"
-echo "  SCANNERS_SECURITY_DOMAIN=$SCANNERS_SECURITY_DOMAIN"
+echo "  METADEX_URL=$METADEX_URL"
+echo "  METADEX_USER=$METADEX_USER"
+echo "  METADEX_SECURITY_DOMAIN=$METADEX_SECURITY_DOMAIN"
 
 
 if (is_git_updated && is_metadex_running && check_mdx_config && ok_to_scan && update_git_repo && start_mdx_scan)
